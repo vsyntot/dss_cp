@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+
+        <div class="form-card">
+            <h2>Список пользователей</h2>
+
+            <div style="margin-bottom: 1rem;">
+                <h:link value="Добавить нового пользователя" outcome="userEdit.xhtml" styleClass="nav-link" />
+            </div>
+
+            <h:form id="userForm">
+                <p:dataTable id="userTable"
+                             value="#{userBean.allUsers}"
+                             var="user"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="5,10,20"
+                             rowKey="#{user.id}"
+                             styleClass="user-table"
+                             emptyMessage="Пользователи не найдены.">
+
+                    <p:column headerText="ID" sortBy="#{user.id}">
+                        <h:outputText value="#{user.id}" />
+                    </p:column>
+
+                    <p:column headerText="Имя пользователя" sortBy="#{user.username}">
+                        <h:outputText value="#{user.username}" />
+                    </p:column>
+
+                    <p:column headerText="ФИО" sortBy="#{user.fullName}">
+                        <h:outputText value="#{user.fullName}" />
+                    </p:column>
+
+                    <p:column headerText="Роль" sortBy="#{user.roleName}">
+                        <h:outputText value="#{user.roleName}" />
+                    </p:column>
+
+                    <p:column headerText="Действия" style="text-align: center;">
+                        <h:link value="Редактировать" outcome="userEdit.xhtml">
+                            <f:param name="id" value="#{user.id}" />
+                        </h:link>
+                        <br/><br/>
+                        <p:commandButton icon="pi pi-trash"
+                                         title="Удалить"
+                                         action="#{userBean.deleteUser(user.id)}"
+                                         update="@form"
+                                         styleClass="ui-button-danger"
+                                         onclick="return confirm('Удалить пользователя?');" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/template.xhtml">
+
+    <ui:define name="content">
+        <h:panelGroup rendered="#{sessionScope.currentUser.roleName eq 'admin'}">
+            <div class="form-card">
+                <h2>Добавление нового кандидата</h2>
+
+                <h:form id="candidateForm" styleClass="form-grid">
+
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                    <p:outputLabel for="name" value="Имя:" />
+                    <p:inputText id="name" value="#{candidateInputBean.candidate.name}" required="true" label="Имя">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                    <p:message for="name" />
+
+                    <p:outputLabel for="email" value="Email:" />
+                    <p:inputText id="email" value="#{candidateInputBean.candidate.email}" required="true" label="Email">
+                        <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                    </p:inputText>
+                    <p:message for="email" />
+
+                    <p:outputLabel for="birthDate" value="Дата рождения:" />
+                    <p:calendar id="birthDate" value="#{candidateInputBean.candidate.birthDate}"
+                                pattern="dd.MM.yyyy" required="true" label="Дата рождения" showIcon="true" />
+                    <p:message for="birthDate" />
+
+                    <p:commandButton value="Сохранить кандидата"
+                                     action="#{candidateInputBean.saveCandidate}"
+                                     update="candidateForm messages"
+                                     styleClass="button" />
+
+                </h:form>
+            </div>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{sessionScope.currentUser.roleName ne 'admin'}">
+            <div class="form-card">
+                <h2>Доступ запрещён</h2>
+                <p>У вас нет прав на добавление кандидатов.</p>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>
+</html>

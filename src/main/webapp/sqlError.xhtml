@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+        <div class="form-card">
+            <h2>Ошибка доступа к базе данных</h2>
+            <p>Во время обработки запроса возникла проблема с подключением к базе данных.</p>
+            <p>Пожалуйста, попробуйте позже или обратитесь к администратору.</p>
+            <h:link value="На главную" outcome="dashboard.xhtml" styleClass="button" />
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

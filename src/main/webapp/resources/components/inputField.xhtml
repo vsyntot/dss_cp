@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name="label" required="true" />
+    <composite:attribute name="value" required="true" />
+    <composite:attribute name="required" default="false" />
+    <composite:attribute name="id" required="true" />
+    <composite:attribute name="validatorPattern" required="false" />
+    <composite:attribute name="type" default="text" />
+</composite:interface>
+
+<composite:implementation>
+    <h:panelGrid columns="2" cellpadding="5" styleClass="form-field">
+
+        <h:outputLabel for="#{cc.attrs.id}" value="#{cc.attrs.label}" styleClass="form-label"/>
+
+        <h:inputText id="#{cc.attrs.id}"
+                     value="#{cc.attrs.value}"
+                     required="#{cc.attrs.required}"
+                     type="#{cc.attrs.type}"
+                     styleClass="form-input">
+
+            <f:ajax event="blur" render="@this :msg-#{cc.attrs.id}" />
+
+            <f:validateRegex pattern="#{cc.attrs.validatorPattern}"
+                             disabled="#{empty cc.attrs.validatorPattern}" />
+
+        </h:inputText>
+
+        <h:outputText />
+        <h:message id="msg-#{cc.attrs.id}" for="#{cc.attrs.id}" styleClass="form-message"/>
+
+    </h:panelGrid>
+</composite:implementation>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+
+        <div class="form-card">
+            <h2>Список кандидатов</h2>
+
+            <div style="margin-bottom: 1rem;">
+                <h:link value="Добавить нового кандидата" outcome="input.xhtml" styleClass="nav-link" />
+                |
+                <h:outputLink value="#{request.contextPath}/export?type=csv" styleClass="nav-link" target="_blank">
+                    Экспорт в CSV
+                </h:outputLink>
+            </div>
+
+            <h:form id="candidateForm">
+                <p:dataTable
+                        id="candidatesTable"
+                        widgetVar="candidatesTable"
+                        value="#{candidateSessionBean.lazyCandidates}"
+                        var="candidate"
+                        lazy="true"
+                        filterMode="server"
+                        paginator="true"
+                        rows="10"
+                        rowsPerPageTemplate="5,10,20"
+                        selectionMode="single"
+                        selection="#{candidateSessionBean.selectedCandidate}"
+                        rowKey="#{candidate.id}">
+
+                    <p:column field="name"
+                              headerText="Имя"
+                              sortBy="#{candidate.name}"
+                              filterBy="#{candidate.name}">
+                        <h:outputText value="#{candidate.name}" />
+                    </p:column>
+
+                    <p:column field="email"
+                              headerText="Email"
+                              sortBy="#{candidate.email}"
+                              filterBy="#{candidate.email}">
+                        <h:outputText value="#{candidate.email}" />
+                    </p:column>
+
+                    <p:column field="birthDate"
+                              headerText="Дата рождения"
+                              sortBy="#{candidate.birthDate}"
+                              filterBy="#{candidate.birthDate}">
+                        <h:outputText value="#{candidate.birthDate}">
+                            <f:convertDateTime pattern="dd.MM.yyyy" timeZone="Europe/Moscow"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column field="createdBy"
+                              headerText="Добавлен"
+                              sortBy="#{candidate.createdBy}"
+                              filterBy="#{candidate.createdBy}">
+                        <h:outputText value="#{candidate.createdBy}" />
+                    </p:column>
+
+                    <p:column headerText="Действия" style="width:120px; text-align:center;">
+                        <h:link value="Подробнее" outcome="candidateDetails.xhtml">
+                            <f:param name="id" value="#{candidate.id}" />
+                        </h:link>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

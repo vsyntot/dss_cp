@@ -1,0 +1,251 @@
+/* Основное оформление */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Шапка */
+.header {
+    background-color: #1e88e5;
+    padding: 2rem 0 1rem;
+    color: white;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar {
+    margin-top: 0.5rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #cde7ff;
+}
+
+/* Футер */
+.footer {
+    background-color: #ececec;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Формы */
+.form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.form-card h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="text"], input[type="email"], input[type="date"] {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+    border-color: #1e88e5;
+    outline: none;
+}
+
+/* Кнопка */
+.button {
+    display: inline-block;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #1565c0;
+}
+
+/* Таблица */
+.ui-datatable {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin: 2rem auto;
+    max-width: 960px;
+}
+
+.ui-datatable thead th {
+    background-color: #f0f4f8;
+    color: #333;
+    font-weight: 600;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.ui-datatable tbody tr {
+    transition: background-color 0.3s;
+}
+
+.ui-datatable tbody tr:hover {
+    background-color: #f0f8ff;
+    cursor: pointer;
+}
+
+.ui-datatable tbody tr.ui-state-highlight {
+    background-color: #e3f2fd !important;
+}
+
+.ui-inputfield {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+/* Центровка */
+.center {
+    text-align: center;
+}
+
+/* Ошибки рядом с полем */
+.field-error {
+    color: #d32f2f;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+/* Подсветка поля с ошибкой */
+.ui-state-error {
+    border-color: #d32f2f !important;
+    background-color: #fff5f5 !important;
+}
+
+/* Глобальное сообщение об ошибке */
+.global-message {
+    background-color: #fdecea;
+    border: 1px solid #f5c6cb;
+    color: #b71c1c;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Группировка и отступы */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.user-greeting {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #e0e0e0;
+    text-align: right;
+}
+
+.logout-button {
+    background-color: #ff4d4f;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.logout-button:hover {
+    background-color: #ff7875;
+}
+
+.form-item {
+    margin-bottom: 1.25rem;
+    display: block;
+}
+
+.link-group {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.link-group a {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    color: #1e88e5;
+}
+
+.link-group a:hover {
+    color: #1565c0;
+}
+
+.link-group span {
+    color: #999;
+}
+
+.role-admin {
+    color: #0277bd;
+    font-weight: bold;
+}
+
+.role-user {
+    color: #0277bd;
+    font-weight: bold;
+}
+
+.form-item {
+    margin-top: 1rem;
+}

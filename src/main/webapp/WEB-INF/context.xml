@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+           dataSourceName="jdbc/hrassessment"
+           userTable="users"
+           userNameCol="username"
+           userCredCol="password"
+           userRoleTable="user_roles"
+           roleNameCol="role_name"
+           digest="None" />
+
+</Context>

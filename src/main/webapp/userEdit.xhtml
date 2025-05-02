@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+
+        <div class="form-card">
+            <h2>#{userEditBean.editMode ? 'Редактирование пользователя' : 'Добавление нового пользователя'}</h2>
+
+            <h:form id="userEditForm">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+
+                <h:panelGrid columns="2" cellpadding="5" styleClass="form-grid form-item">
+
+                    <p:outputLabel for="username" value="Имя пользователя:" />
+                    <p:inputText id="username" value="#{userEditBean.user.username}" required="true"
+                                 readonly="#{userEditBean.editMode}" />
+
+                    <p:outputLabel for="fullName" value="ФИО:" />
+                    <p:inputText id="fullName" value="#{userEditBean.user.fullName}" required="true" />
+
+                    <p:outputLabel for="password" value="Пароль:" />
+                    <p:password id="password" value="#{userEditBean.password}" redisplay="false"
+                                required="#{!userEditBean.editMode}" />
+
+                    <p:outputLabel for="birthdate" value="Дата рождения:" />
+                    <p:calendar id="birthdate" value="#{userEditBean.user.birthdate}"
+                                pattern="dd.MM.yyyy" showIcon="true" />
+
+                    <p:outputLabel for="role" value="Роль:" />
+                    <p:selectOneMenu id="role" value="#{userEditBean.user.roleName}" required="true">
+                        <f:selectItem itemLabel="Выберите роль" itemValue="" noSelectionOption="true" />
+                        <f:selectItem itemLabel="Администратор" itemValue="admin" />
+                        <f:selectItem itemLabel="Пользователь" itemValue="user" />
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+
+                <div style="margin-top: 2rem;">
+                    <p:commandButton value="Сохранить"
+                                     action="#{userEditBean.saveUser}"
+                                     update="userEditForm messages"
+                                     icon="pi pi-save"
+                                     styleClass="button" />
+
+                    <h:button value="Назад"
+                              outcome="userList.xhtml"
+                              styleClass="button ui-button-secondary"
+                              icon="pi pi-arrow-left" />
+                </div>
+            </h:form>
+        </div>
+
+    </ui:define>
+</ui:composition>
+</html>

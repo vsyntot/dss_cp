@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>HR Assessment - скоринг кандидатов по цифровым следам</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+    <div class="header">
+        <div class="form-item">
+            <h:panelGroup rendered="#{not empty sessionScope.currentUser}">
+                <h:panelGroup rendered="#{sessionScope.currentUser.roleName eq 'admin'}">
+                    <h:link value="Добавить кандидата" outcome="input.xhtml" styleClass="nav-link" />
+                    |
+                    <h:link value="Список кандидатов" outcome="result.xhtml" styleClass="nav-link" />
+                    |
+                    <h:link value="Список пользоватей" outcome="userList.xhtml" styleClass="nav-link" />
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{sessionScope.currentUser.roleName eq 'user'}">
+                    <h:link value="Список кандидатов" outcome="result.xhtml" styleClass="nav-link" />
+                </h:panelGroup>
+            </h:panelGroup>
+        </div>
+
+        <h:panelGroup rendered="#{not empty sessionScope.currentUser}" styleClass="user-greeting">
+            <h:outputText value="Здравствуйте, #{sessionScope.currentUser.fullName}!" />
+            &#160;|&#160;
+            <h:form style="display:inline;">
+                <p:commandButton value="Выйти"
+                                 action="#{logoutBean.logout}"
+                                 icon="pi pi-sign-out"
+                                 styleClass="logout-button"
+                                 ajax="false" />
+            </h:form>
+        </h:panelGroup>
+    </div>
+
+    <div class="content">
+        <ui:insert name="content"/>
+    </div>
+
+    <div class="footer">
+        © Владимирский государственный университет, 2025
+    </div>
+</h:body>
+</html>
